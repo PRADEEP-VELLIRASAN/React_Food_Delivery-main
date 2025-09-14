@@ -11,7 +11,6 @@ import { cartUiActions } from "../../store/shopping-cart/cartUiSlice";
 import "../../styles/header.css";
 
 const nav__links = [
-  
   {
     display: "Home",
     path: "/home",
