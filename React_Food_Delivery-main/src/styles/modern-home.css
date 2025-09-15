@@ -1,0 +1,190 @@
+/* Modern Home Page Styles & Animations */
+
+.modern-hero-section {
+  background: linear-gradient(120deg, #f8fafc 0%, #ffe5e5 100%);
+  border-radius: 0 0 2.5rem 2.5rem;
+  box-shadow: 0 4px 32px 0 rgba(223,32,32,0.07);
+  padding-top: 60px;
+  padding-bottom: 60px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.modern-hero__content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  animation: fadeInUp 1s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+.modern-hero__subtitle {
+  font-size: 1.2rem;
+  color: #df2020;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.modern-hero__title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #212245;
+  margin-bottom: 2rem;
+}
+
+.modern-hero__title span {
+  color: #df2020;
+  background: linear-gradient(90deg, #df2020 0%, #ff7e5f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modern-order__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, #df2020 0%, #ff7e5f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.85rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 2px 12px 0 rgba(223,32,32,0.13);
+  transition: transform 0.18s cubic-bezier(.23,1.01,.32,1), box-shadow 0.18s;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-order__btn:hover, .modern-view-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 24px 0 rgba(223,32,32,0.18);
+  background: linear-gradient(90deg, #ff7e5f 0%, #df2020 100%);
+}
+
+.modern-hero__img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slideInRight 1.1s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+/* Section Title */
+.modern-section-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #df2020;
+  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
+}
+
+/* Product Card */
+.modern-product-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 16px 0 rgba(223,32,32,0.07);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 420px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  animation: cardIn 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+.modern-product-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px 0 rgba(223,32,32,0.13);
+}
+
+.modern-product-img {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.modern-product-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 1rem;
+  transition: transform 0.4s cubic-bezier(.23,1.01,.32,1);
+}
+
+.modern-product-card:hover .modern-product-img img {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.modern-product-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #212245;
+}
+
+.modern-product-price span {
+  color: #df2020;
+  font-weight: 700;
+}
+
+.modern-product-category span {
+  color: #ff7e5f;
+  font-weight: 600;
+}
+
+.modern-product-desc {
+  font-size: 0.97rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+.modern-view-btn {
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  padding: 0.7rem 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes cardIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s cubic-bezier(.23,1.01,.32,1) both;
+}
+.animate-slide-in {
+  animation: slideInRight 1.1s cubic-bezier(.23,1.01,.32,1) both;
+}
+.animate-card-in {
+  animation: cardIn 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+@media (max-width: 992px) {
+  .modern-hero__title { font-size: 2.1rem; }
+  .modern-section-title { font-size: 1.5rem; }
+  .modern-product-card { min-height: 350px; }
+}
+@media (max-width: 576px) {
+  .modern-hero-section { padding: 30px 0; }
+  .modern-hero__title { font-size: 1.3rem; }
+  .modern-section-title { font-size: 1.1rem; }
+  .modern-product-card { padding: 1rem; }
+}
