@@ -39,17 +39,30 @@ const Home = () => {
       {/* Show all pizza details below hero section */}
       <section>
         <Container>
-          <h2 className="mb-4">All Pizzas</h2>
+          <h2 className="mb-4 text-center">All Pizzas</h2>
           <Row>
             {products.map((product) => (
-              <Col lg="4" md="6" sm="12" key={product.id} className="mb-4">
-                <div className="product__card">
-                  <img src={product.image01} alt={product.title} className="w-100 mb-3" />
-                  <h4 className="product__title mb-2">{product.title}</h4>
-                  <p className="product__price mb-1">Price: <span>${product.price}</span></p>
-                  <p className="category mb-1">Category: <span>{product.category}</span></p>
-                  <p className="description__content mb-2">{product.desc}</p>
-                  <Link to={`/pizzas/${product.id}`} className="order__btn">View Details</Link>
+              <Col lg="3" md="4" sm="6" xs="12" key={product.id} className="mb-4 d-flex align-items-stretch">
+                <div style={{
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                  borderRadius: "12px",
+                  padding: "18px",
+                  background: "#fff",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  minHeight: "420px"
+                }}>
+                  <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", height: "180px", overflow: "hidden", marginBottom: "12px"}}>
+                    <img src={product.image01} alt={product.title} style={{maxWidth: "100%", maxHeight: "100%", objectFit: "contain"}} />
+                  </div>
+                  <h4 className="product__title mb-2 text-center" style={{fontWeight:600}}>{product.title}</h4>
+                  <p className="product__price mb-1 text-center">Price: <span style={{fontWeight:500}}>${product.price}</span></p>
+                  <p className="category mb-1 text-center">Category: <span>{product.category}</span></p>
+                  <p className="description__content mb-2 text-center" style={{fontSize:"0.95rem", color:"#555"}}>{product.desc}</p>
+                  <Link to={`/pizzas/${product.id}`} className="order__btn" style={{marginTop:"auto", width:"100%", textAlign:"center"}}>View Details</Link>
                 </div>
               </Col>
             ))}
