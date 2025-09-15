@@ -51,13 +51,14 @@ const Pizzas = () => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 minHeight: "420px",
-                transition: "box-shadow 0.2s, transform 0.2s"
+                transition: "box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1)",
+                willChange: "transform, box-shadow"
               }}
-              onMouseOver={e => {e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,76,76,0.18)'; e.currentTarget.style.transform = 'translateY(-4px) scale(1.03)';}}
+              onMouseOver={e => {e.currentTarget.style.boxShadow = '0 12px 36px rgba(255,76,76,0.22)'; e.currentTarget.style.transform = 'translateY(-8px) scale(1.04)';}}
               onMouseOut={e => {e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.10)'; e.currentTarget.style.transform = 'none';}}
               >
-                <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", height: "180px", overflow: "hidden", marginBottom: "18px", borderRadius: "16px", background: "#f8fafc"}}>
-                  <img src={item.image01} alt={item.title} style={{maxWidth: "100%", maxHeight: "100%", objectFit: "contain", borderRadius: "12px"}} />
+                <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", height: "180px", overflow: "hidden", marginBottom: "18px", borderRadius: "16px", background: "#f8fafc", transition: "background 0.3s"}}>
+                  <img src={item.image01} alt={item.title} style={{maxWidth: "100%", maxHeight: "100%", objectFit: "contain", borderRadius: "12px", transition: "transform 0.3s"}} />
                 </div>
                 <h4 className="product__title mb-2 text-center" style={{fontWeight:700, fontSize:"1.25rem", color:"#222"}}>{item.title}</h4>
                 <p className="product__price mb-1 text-center" style={{fontWeight:600, color:"#ff4c4c", fontSize:"1.1rem"}}>Price: <span style={{fontWeight:700}}>${item.price}</span></p>
