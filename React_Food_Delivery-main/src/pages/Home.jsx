@@ -41,8 +41,8 @@ const Home = () => {
         <Container>
           <h2 className="mb-4 text-center">All Pizzas</h2>
           <Row>
-            {products.map((product) => (
-              <Col lg="3" md="4" sm="6" xs="12" key={product.id} className="mb-4 d-flex align-items-stretch">
+            {products.map((product, idx) => (
+              <Col lg="4" md="4" sm="6" xs="12" key={product.id} className="mb-4 d-flex align-items-stretch">
                 <div style={{
                   boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                   borderRadius: "12px",
