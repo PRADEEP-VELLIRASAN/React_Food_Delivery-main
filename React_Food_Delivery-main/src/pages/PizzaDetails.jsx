@@ -91,75 +91,59 @@ const PizzaDetails = () => {
 
       <CommonSection title={title} />
 
-      <section>
+      <section style={{background: "#f8fafc", borderRadius: "24px", padding: "32px 0 24px 0", boxShadow: "0 2px 16px rgba(0,0,0,0.04)", marginTop: "32px"}}>
         <Container>
           <Row>
             <Col lg="2" md="2">
-              <div className="product__images">
-                <div
-                  className="img__item mb-3"
-                  onClick={() => setPreviewImg(product.image01)}
-                >
-                  <img src={product.image01} alt="" className="w-50" />
-                </div>
-                <div
-                  className="img__item mb-3"
-                  onClick={() => setPreviewImg(product.image02)}
-                >
-                  <img src={product.image02} alt="" className="w-50" />
-                </div>
-
-                <div
-                  className="img__item"
-                  onClick={() => setPreviewImg(product.image03)}
-                >
-                  <img src={product.image03} alt="" className="w-50" />
-                </div>
+              <div style={{display: "flex", flexDirection: "column", gap: "12px"}}>
+                {[product.image01, product.image02, product.image03].map((img, idx) => (
+                  img ? (
+                    <div key={idx} style={{cursor: "pointer", borderRadius: "12px", overflow: "hidden", boxShadow: previewImg === img ? "0 2px 12px #ff4c4c55" : "0 1px 4px #ccc"}} onClick={() => setPreviewImg(img)}>
+                      <img src={img} alt={title + "-" + (idx+1)} style={{width: "100%", height: "64px", objectFit: "cover"}} />
+                    </div>
+                  ) : null
+                ))}
               </div>
             </Col>
 
             <Col lg="4" md="4">
-              <div className="product__main-img">
-                <img src={previewImg} alt="" className="w-100" />
+              <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 4px 24px rgba(0,0,0,0.10)", padding: "18px", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <img src={previewImg} alt={title} style={{width: "100%", maxHeight: "260px", objectFit: "contain", borderRadius: "12px"}} />
               </div>
             </Col>
 
             <Col lg="6" md="6">
-              <div className="single__product-content">
-                <h2 className="product__title mb-3">{title}</h2>
-                <p className="product__price">
-                  {" "}
-                  Price: <span>${price}</span>
-                </p>
-                <p className="category mb-5">
-                  Category: <span>{category}</span>
-                </p>
-
-                <button onClick={addItem} className="addTOCART__btn">
+              <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 4px 24px rgba(0,0,0,0.10)", padding: "24px 18px", minHeight: "260px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                <h2 style={{fontWeight:800, fontSize:"2rem", color:"#222", marginBottom: "18px"}}>{title}</h2>
+                <p style={{fontWeight:700, color:"#ff4c4c", fontSize:"1.15rem", marginBottom: "8px"}}>Price: <span style={{fontWeight:700}}>${price}</span></p>
+                <p style={{color:"#888", fontSize:"1rem", marginBottom: "18px"}}>Category: <span style={{color:"#222"}}>{category}</span></p>
+                <button onClick={addItem} style={{background: "#ff4c4c", color: "#fff", border: "none", borderRadius: "32px", padding: "14px 0", fontWeight:600, fontSize:"1.1rem", width: "100%", boxShadow: "0 2px 8px rgba(255,76,76,0.10)", marginBottom: "12px", transition: "background 0.2s"}}>
                   {cartProducts.find(item => item.id === id) ? 'Update Cart' : 'Add to Cart'}
                 </button>
+                <div style={{marginTop: "12px"}}>
+                  <h5 style={{fontWeight:700, color:"#222", marginBottom: "8px"}}>Extra Ingredients</h5>
+                  <div style={{display: "flex", flexWrap: "wrap", gap: "10px"}}>
+                    {(Object.values(ExtraIngredients)).map((ingredient) => {
+                      return (
+                        <ExtraIngredient isChecked={extraIngredients.includes(ingredient)}  key={ingredient} onSelect={ingredient => updateExtraIngredients(ingredient)} ingredient={ingredient}></ExtraIngredient>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
             </Col>
 
-            <Col lg='12'>
-              <div className="extraIngredientsGrid">
-                {(Object.values(ExtraIngredients)).map((ingredient) => {
-                  return (
-                    <ExtraIngredient isChecked={extraIngredients.includes(ingredient)}  key={ingredient} onSelect={ingredient => updateExtraIngredients(ingredient)} ingredient={ingredient}></ExtraIngredient>
-                  )
-                })}
-              </div>
-            </Col>
-
-            <Col lg="12">
-              <h6 className="description">Description</h6>
-              <div className="description__content">
-                <p>{desc}</p>
+            <Col lg="12" style={{marginTop: "32px"}}>
+              <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "24px 18px"}}>
+                <h5 style={{fontWeight:700, color:"#222", marginBottom: "8px"}}>Description</h5>
+                <div style={{fontSize:"1.05rem", color:"#555"}}>
+                  <p>{desc}</p>
+                </div>
               </div>
             </Col>
 
             <Col lg="12" className="mb-5 mt-4">
-              <h2 className="related__Product-title">You might also like</h2>
+              <h2 style={{fontWeight:800, fontSize:"1.5rem", color:"#ff4c4c", marginBottom: "18px"}}>You might also like</h2>
             </Col>
 
             {relatedProduct.map((item) => (
