@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 import "../styles/product-details.css";
 import "../styles/product-card.css";
+import "../styles/modern-product-details.css";
 
 import ProductCard from "../components/UI/product-card/ProductCard";
 
@@ -83,88 +84,117 @@ const PizzaDetails = () => {
   return (
     <Helmet title="Product-details">
       {isUpdateNotificationDisplayed && (
-        <div className="updateCartNotifiation">
-          <span>You successfully updated your cart!</span>
+        <div className="modern-notification animate-slide-down">
+          <div className="notification-content">
+            <i className="ri-check-line"></i>
+            <span>Cart updated successfully!</span>
+          </div>
         </div>
-      )
-      }
+      )}
 
       <CommonSection title={title} />
 
-      <section>
+      <section className="modern-product-details-section">
         <Container>
           <Row>
             <Col lg="2" md="2">
-              <div className="product__images">
+              <div className="modern-product-gallery animate-fade-in">
+                <h6 className="gallery-title">Gallery</h6>
                 <div
-                  className="img__item mb-3"
+                  className={`gallery-thumb ${previewImg === product.image01 ? 'active' : ''}`}
                   onClick={() => setPreviewImg(product.image01)}
                 >
-                  <img src={product.image01} alt="" className="w-50" />
+                  <img src={product.image01} alt="Preview 1" />
                 </div>
                 <div
-                  className="img__item mb-3"
+                  className={`gallery-thumb ${previewImg === product.image02 ? 'active' : ''}`}
                   onClick={() => setPreviewImg(product.image02)}
                 >
-                  <img src={product.image02} alt="" className="w-50" />
+                  <img src={product.image02} alt="Preview 2" />
                 </div>
-
                 <div
-                  className="img__item"
+                  className={`gallery-thumb ${previewImg === product.image03 ? 'active' : ''}`}
                   onClick={() => setPreviewImg(product.image03)}
                 >
-                  <img src={product.image03} alt="" className="w-50" />
+                  <img src={product.image03} alt="Preview 3" />
                 </div>
               </div>
             </Col>
 
             <Col lg="4" md="4">
-              <div className="product__main-img">
-                <img src={previewImg} alt="" className="w-100" />
+              <div className="modern-product-main-img animate-scale-in">
+                <img src={previewImg} alt={title} />
               </div>
             </Col>
 
             <Col lg="6" md="6">
-              <div className="single__product-content">
-                <h2 className="product__title mb-3">{title}</h2>
-                <p className="product__price">
-                  {" "}
-                  Price: <span>${price}</span>
-                </p>
-                <p className="category mb-5">
-                  Category: <span>{category}</span>
-                </p>
-
-                <button onClick={addItem} className="addTOCART__btn">
-                  {cartProducts.find(item => item.id === id) ? 'Update Cart' : 'Add to Cart'}
+              <div className="modern-product-info animate-fade-in">
+                <h1 className="modern-product-title">{title}</h1>
+                <div className="price-category-section">
+                  <div className="price-tag">
+                    <span className="price-label">Price</span>
+                    <span className="price-value">${price}</span>
+                  </div>
+                  <div className="category-badge">
+                    <span className="category-label">Category</span>
+                    <span className="category-value">{category}</span>
+                  </div>
+                </div>
+                <button onClick={addItem} className="modern-order__btn add-to-cart-btn">
+                  {cartProducts.find(item => item.id === id) ? (
+                    <>
+                      <i className="ri-refresh-line"></i>
+                      Update Cart
+                    </>
+                  ) : (
+                    <>
+                      <i className="ri-shopping-cart-line"></i>
+                      Add to Cart
+                    </>
+                  )}
                 </button>
               </div>
             </Col>
 
             <Col lg='12'>
-              <div className="extraIngredientsGrid">
-                {(Object.values(ExtraIngredients)).map((ingredient) => {
-                  return (
-                    <ExtraIngredient isChecked={extraIngredients.includes(ingredient)}  key={ingredient} onSelect={ingredient => updateExtraIngredients(ingredient)} ingredient={ingredient}></ExtraIngredient>
-                  )
-                })}
+              <div className="modern-ingredients-section animate-fade-in">
+                <h3 className="ingredients-title">Customize Your Pizza</h3>
+                <p className="ingredients-subtitle">Select extra ingredients to make it perfect</p>
+                <div className="modern-ingredients-grid">
+                  {(Object.values(ExtraIngredients)).map((ingredient) => {
+                    return (
+                      <ExtraIngredient 
+                        isChecked={extraIngredients.includes(ingredient)}  
+                        key={ingredient} 
+                        onSelect={ingredient => updateExtraIngredients(ingredient)} 
+                        ingredient={ingredient}
+                      />
+                    )
+                  })}
+                </div>
               </div>
             </Col>
 
             <Col lg="12">
-              <h6 className="description">Description</h6>
-              <div className="description__content">
-                <p>{desc}</p>
+              <div className="modern-description-section animate-fade-in">
+                <h3 className="description-title">Description</h3>
+                <div className="description-content">
+                  <p>{desc}</p>
+                </div>
               </div>
             </Col>
 
             <Col lg="12" className="mb-5 mt-4">
-              <h2 className="related__Product-title">You might also like</h2>
+              <div className="modern-related-section">
+                <h2 className="modern-section-title animate-fade-in">You might also like</h2>
+              </div>
             </Col>
 
-            {relatedProduct.map((item) => (
+            {relatedProduct.map((item, idx) => (
               <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>
-                <ProductCard item={item} />
+                <div className="animate-card-in" style={{animationDelay: `${0.1 * idx}s`}}>
+                  <ProductCard item={item} />
+                </div>
               </Col>
             ))}
           </Row>

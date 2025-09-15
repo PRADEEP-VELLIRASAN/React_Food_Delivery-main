@@ -1,0 +1,255 @@
+/* Modern Checkout Page Styles */
+
+.modern-checkout-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #f8fafc 0%, #ffe5e5 100%);
+  padding: 2rem;
+}
+
+.modern-checkout-content {
+  text-align: center;
+  background: white;
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 40px 0 rgba(223,32,32,0.1);
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.success-icon-container {
+  position: relative;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.success-icon-background {
+  background: linear-gradient(90deg, #df2020 0%, #ff7e5f 100%);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.modern-checkout-icon {
+  font-size: 3rem;
+  color: white;
+  animation: checkmarkPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+.success-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(223, 32, 32, 0.2);
+  animation: rippleEffect 1.5s ease-out both;
+  z-index: 1;
+}
+
+.checkout-message-content {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.checkout-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #212245;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #df2020 0%, #ff7e5f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.checkout-subtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212245;
+  margin-bottom: 1rem;
+}
+
+.checkout-description {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+/* Order Timeline */
+.order-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.order-timeline::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #999;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-item.active {
+  color: #df2020;
+  font-weight: 600;
+}
+
+.timeline-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: 3px solid white;
+  transition: all 0.3s;
+}
+
+.timeline-item.active .timeline-dot {
+  background: linear-gradient(90deg, #df2020 0%, #ff7e5f 100%);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 3px rgba(223, 32, 32, 0.2);
+}
+
+.track-order-btn {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+}
+
+/* Animations */
+@keyframes checkmarkPop {
+  0% { 
+    transform: scale(0) rotate(-45deg); 
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1.2) rotate(-45deg); 
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 1;
+  }
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modern-checkout-content {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .checkout-title {
+    font-size: 2rem;
+  }
+  
+  .checkout-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .checkout-description {
+    font-size: 1rem;
+  }
+  
+  .order-timeline {
+    padding: 0 0.5rem;
+  }
+  
+  .timeline-item {
+    font-size: 0.7rem;
+  }
+  
+  .timeline-dot {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modern-checkout-container {
+    padding: 1rem;
+  }
+  
+  .modern-checkout-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .success-icon-background {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .modern-checkout-icon {
+    font-size: 2.5rem;
+  }
+  
+  .checkout-title {
+    font-size: 1.8rem;
+  }
+}

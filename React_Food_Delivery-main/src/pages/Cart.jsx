@@ -3,6 +3,7 @@ import React from "react";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/cart-page.css";
+import "../styles/modern-cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import { cartActions } from "../store/shopping-cart/cartSlice";
@@ -14,40 +15,56 @@ const Cart = () => {
   return (
     <Helmet title="Cart">
       <CommonSection title="Your Cart" />
-      <section>
+      <section className="modern-cart-section">
         <Container>
           <Row>
             <Col lg="12">
               {cartItems.length === 0 ? (
-                <h5 className="text-center">Your cart is empty</h5>
+                <div className="modern-empty-cart animate-fade-in">
+                  <div className="empty-cart-icon">
+                    <i className="ri-shopping-cart-line"></i>
+                  </div>
+                  <h3 className="empty-cart-title">Your cart is empty</h3>
+                  <p className="empty-cart-subtitle">Add some delicious pizzas to get started!</p>
+                  <Link to="/pizzas" className="modern-order__btn">
+                    Browse Menu
+                  </Link>
+                </div>
               ) : (
                 <>
-                  <h5 className="mb-5">Summary of your order</h5>
-                  <table className="table table-borderless mb-5 align-middle">
-                    <tbody>
-                      {cartItems.map((item) => (
-                        <Tr item={item} key={item.id} />
-                      ))}
-                    </tbody>
-                  </table>
+                  <div className="modern-cart-header animate-fade-in">
+                    <h2 className="modern-section-title">Summary of your order</h2>
+                    <span className="cart-item-count">{cartItems.length} item{cartItems.length > 1 ? 's' : ''}</span>
+                  </div>
+                  <div className="modern-cart-items">
+                    {cartItems.map((item, idx) => (
+                      <div key={item.id} className="animate-card-in" style={{animationDelay: `${0.1 * idx}s`}}>
+                        <Tr item={item} />
+                      </div>
+                    ))}
+                  </div>
                 </>
               )}
 
-              <div className="mt-4">
-                <h6>
-                  Subtotal: $
-                  <span className="cart__subtotal">{totalAmount}</span>
-                </h6>
-                <p>Taxes and shipping will calculate at checkout</p>
-                <div className="cart__page-btn">
-                  <button className="addTOCart__btn me-4">
-                    <Link to="/pizzas">Continue Shopping</Link>
-                  </button>
-                  <button className="addTOCart__btn">
-                    <Link to="/checkout">Proceed to checkout</Link>
-                  </button>
+              {cartItems.length > 0 && (
+                <div className="modern-cart-summary animate-fade-in">
+                  <div className="cart-total-section">
+                    <div className="subtotal-row">
+                      <span>Subtotal:</span>
+                      <span className="cart__subtotal">${totalAmount}</span>
+                    </div>
+                    <p className="tax-info">Taxes and shipping will be calculated at checkout</p>
+                    <div className="cart__page-btn">
+                      <Link to="/pizzas" className="modern-order__btn secondary-btn">
+                        Continue Shopping
+                      </Link>
+                      <Link to="/checkout" className="modern-order__btn primary-btn">
+                        Proceed to Checkout
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </Col>
           </Row>
         </Container>
@@ -63,18 +80,25 @@ const Tr = (props) => {
   const deleteItem = () => {
     dispatch(cartActions.deleteItem(id));
   };
+  
   return (
-    <tr>
-      <td className="text-center cart__img-box">
-        <img src={image01} alt="" />
-      </td>
-      <td className="text-center">{title}</td>
-      <td className="text-center">${price}</td>
-      <td className="text-center">{quantity}px</td>
-      <td className="text-center cart__item-del">
-        <i className="ri-delete-bin-line" onClick={deleteItem}></i>
-      </td>
-    </tr>
+    <div className="modern-cart-item">
+      <div className="cart-item-image">
+        <img src={image01} alt={title} />
+      </div>
+      <div className="cart-item-details">
+        <h4 className="cart-item-title">{title}</h4>
+        <div className="cart-item-info">
+          <span className="cart-item-price">${price}</span>
+          <span className="cart-item-quantity">Qty: {quantity}</span>
+        </div>
+      </div>
+      <div className="cart-item-actions">
+        <button className="delete-btn" onClick={deleteItem}>
+          <i className="ri-delete-bin-line"></i>
+        </button>
+      </div>
+    </div>
   );
 };
 
