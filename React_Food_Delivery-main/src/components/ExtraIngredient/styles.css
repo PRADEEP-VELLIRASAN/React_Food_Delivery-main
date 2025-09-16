@@ -1,11 +1,16 @@
-.extraIngredient{
-    border: 1px solid black;
-    display: flex;
-    height: 3rem;
-    align-items: center;
-    padding: 0 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 20rem;
+.extraIngredient {
+  border: 1px solid #df2020;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 1.2rem;
+  margin: 0 0.7rem 1rem 0;
+  border-radius: 2rem;
+  background: #fff;
+  font-size: 1.1rem;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(223,32,32,0.07);
+  transition: box-shadow 0.2s, border 0.2s;
 }
 
 /* The container */
