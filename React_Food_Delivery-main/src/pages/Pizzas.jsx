@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
 import { Container, Row, Col } from "reactstrap";
-
+import { Link } from "react-router-dom";
 import products from "../assets/fake-data/products";
 import ProductCard from "../components/UI/product-card/ProductCard";
 import Helmet from "../components/Helmet/Helmet";
@@ -64,7 +63,7 @@ const Pizzas = () => {
                 <p className="product__price mb-1 text-center" style={{fontWeight:600, color:"#ff4c4c", fontSize:"1.1rem"}}>Price: <span style={{fontWeight:700}}>${item.price}</span></p>
                 <p className="category mb-1 text-center" style={{color:"#888", fontSize:"0.98rem"}}>Category: <span style={{color:"#222"}}>{item.category}</span></p>
                 <p className="description__content mb-2 text-center" style={{fontSize:"0.97rem", color:"#555", minHeight:"48px"}}>{item.desc}</p>
-                <a href={`/pizzas/${item.id}`} className="order__btn" style={{marginTop:"auto", width:"100%", textAlign:"center", background: "#ff4c4c", color: "#fff", borderRadius: "32px", padding: "10px 0", fontWeight:600, fontSize:"1rem", boxShadow: "0 2px 8px rgba(255,76,76,0.10)", border: "none", textDecoration: "none", transition: "background 0.2s"}}>View Details</a>
+                <Link to={`/pizzas/${item.id}`} className="order__btn" style={{marginTop:"auto", width:"100%", textAlign:"center", background: "#ff4c4c", color: "#fff", borderRadius: "32px", padding: "10px 0", fontWeight:600, fontSize:"1rem", boxShadow: "0 2px 8px rgba(255,76,76,0.10)", border: "none", textDecoration: "none", transition: "background 0.2s"}}>View Details</Link>
               </div>
             </Col>
           ))}
