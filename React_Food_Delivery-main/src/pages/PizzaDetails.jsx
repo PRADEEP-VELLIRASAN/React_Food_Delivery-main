@@ -43,26 +43,8 @@ const PizzaDetails = () => {
   const image01 = product ? product.image01 : "";
   const relatedProduct = product ? products.filter((item) => category === item.category) : [];
 
-  // If product is not found, avoid further errors
-  if (!product) {
-    return (
-      <Helmet title="Product-details">
-        <CommonSection title="Pizza Not Found" />
-        <section style={{background: "#f8fafc", borderRadius: "24px", padding: "32px 0 24px 0", boxShadow: "0 2px 16px rgba(0,0,0,0.04)", marginTop: "32px"}}>
-          <Container>
-            <Row>
-              <Col lg="12">
-                <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 4px 24px rgba(0,0,0,0.10)", padding: "32px", textAlign: "center"}}>
-                  <h2 style={{fontWeight:800, fontSize:"2rem", color:"#ff4c4c", marginBottom: "18px"}}>Sorry, this pizza does not exist.</h2>
-                  <p style={{color: "#888"}}>Please check the URL or return to the menu.</p>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      </Helmet>
-    );
-  }
+  // All hooks above. Now handle not found case after hooks.
+
 
   
   useEffect(() => {
@@ -100,11 +82,33 @@ const PizzaDetails = () => {
       window.scrollTo(0, 0);
     }, [product]);
 
+    if (!product) {
+      return (
+        <Helmet title="Product-details">
+          <CommonSection title="Pizza Not Found" />
+          <section style={{background: "#f8fafc", borderRadius: "24px", padding: "32px 0 24px 0", boxShadow: "0 2px 16px rgba(0,0,0,0.04)", marginTop: "32px"}}>
+            <Container>
+              <Row>
+                <Col lg="12">
+                  <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 4px 24px rgba(0,0,0,0.10)", padding: "32px", textAlign: "center"}}>
+                    <h2 style={{fontWeight:800, fontSize:"2rem", color:"#ff4c4c", marginBottom: "18px"}}>Sorry, this pizza does not exist.</h2>
+                    <p style={{color: "#888"}}>Please check the URL or return to the menu.</p>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </section>
+        </Helmet>
+      );
+    }
+
     function updateExtraIngredients(ingredient) {
-      if(extraIngredients.includes(ingredient)) {
-        setExtraIngredients(extraIngredients.filter(item => item !== ingredient));
+      // Defensive: always treat extraIngredients as array
+      const safeIngredients = Array.isArray(extraIngredients) ? extraIngredients : [];
+      if(safeIngredients.includes(ingredient)) {
+        setExtraIngredients(safeIngredients.filter(item => item !== ingredient));
       } else {
-        setExtraIngredients(previousState => [...previousState, ingredient]);
+        setExtraIngredients(previousState => Array.isArray(previousState) ? [...previousState, ingredient] : [ingredient]);
       }
     }
 
@@ -124,12 +128,10 @@ const PizzaDetails = () => {
           <Row>
             <Col lg="2" md="2">
               <div style={{display: "flex", flexDirection: "column", gap: "12px"}}>
-                {[product.image01, product.image02, product.image03].map((img, idx) => (
-                  img ? (
-                    <div key={idx} style={{cursor: "pointer", borderRadius: "12px", overflow: "hidden", boxShadow: previewImg === img ? "0 2px 12px #ff4c4c55" : "0 1px 4px #ccc"}} onClick={() => setPreviewImg(img)}>
-                      <img src={img} alt={title + "-" + (idx+1)} style={{width: "100%", height: "64px", objectFit: "cover"}} />
-                    </div>
-                  ) : null
+                {[product.image01, product.image02, product.image03].filter(Boolean).map((img, idx) => (
+                  <div key={idx} style={{cursor: "pointer", borderRadius: "12px", overflow: "hidden", boxShadow: previewImg === img ? "0 2px 12px #ff4c4c55" : "0 1px 4px #ccc"}} onClick={() => setPreviewImg(img)}>
+                    <img src={img} alt={title + "-" + (idx+1)} style={{width: "100%", height: "64px", objectFit: "cover"}} />
+                  </div>
                 ))}
               </div>
             </Col>
