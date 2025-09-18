@@ -34,19 +34,46 @@ const PizzaDetails = () => {
   const [isUpdateNotificationDisplayed, setIsUpdateNotificationDisplayed] = useState(false);
   const product = products.find((product) => product.id === id);
   const cartProducts = useSelector((state) => state.cart.cartItems);
-  const [previewImg, setPreviewImg] = useState(product.image01);
-  const { title, price, category, desc, image01 } = product;
-  const relatedProduct = products.filter((item) => category === item.category);
+  // Only use product fields if product exists
+  const [previewImg, setPreviewImg] = useState(product ? product.image01 : "");
+  const title = product ? product.title : "";
+  const price = product ? product.price : 0;
+  const category = product ? product.category : "";
+  const desc = product ? product.desc : "";
+  const image01 = product ? product.image01 : "";
+  const relatedProduct = product ? products.filter((item) => category === item.category) : [];
+
+  // If product is not found, avoid further errors
+  if (!product) {
+    return (
+      <Helmet title="Product-details">
+        <CommonSection title="Pizza Not Found" />
+        <section style={{background: "#f8fafc", borderRadius: "24px", padding: "32px 0 24px 0", boxShadow: "0 2px 16px rgba(0,0,0,0.04)", marginTop: "32px"}}>
+          <Container>
+            <Row>
+              <Col lg="12">
+                <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 4px 24px rgba(0,0,0,0.10)", padding: "32px", textAlign: "center"}}>
+                  <h2 style={{fontWeight:800, fontSize:"2rem", color:"#ff4c4c", marginBottom: "18px"}}>Sorry, this pizza does not exist.</h2>
+                  <p style={{color: "#888"}}>Please check the URL or return to the menu.</p>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </Helmet>
+    );
+  }
 
   
   useEffect(() => {
+    if (!product) return;
     const existingPizza = cartProducts.find(item => item.id === id);
     if(existingPizza) {
       setExtraIngredients(existingPizza.extraIngredients);
     } else {
       setExtraIngredients([]);
     }
-  }, [cartProducts, id]);
+  }, [cartProducts, id, product]);
 
   
   const addItem = () => {
@@ -68,6 +95,7 @@ const PizzaDetails = () => {
     };
     
     useEffect(() => {
+      if (!product) return;
       setPreviewImg(product.image01);
       window.scrollTo(0, 0);
     }, [product]);
