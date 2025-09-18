@@ -115,7 +115,7 @@ const PizzaDetails = () => {
             <Col lg="6" md="6">
               <div style={{background: "#fff", borderRadius: "18px", boxShadow: "0 4px 24px rgba(0,0,0,0.10)", padding: "24px 18px", minHeight: "260px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
                 <h2 style={{fontWeight:800, fontSize:"2rem", color:"#222", marginBottom: "18px"}}>{title}</h2>
-                <p style={{fontWeight:700, color:"#ff4c4c", fontSize:"1.15rem", marginBottom: "8px"}}>Price: <span style={{fontWeight:700}}>${price}</span></p>
+                <p style={{fontWeight:700, color:"#ff4c4c", fontSize:"1.15rem", marginBottom: "8px"}}>Price: <span style={{fontWeight:700}}>₹{price.toLocaleString('en-IN')}</span></p>
                 <p style={{color:"#888", fontSize:"1rem", marginBottom: "18px"}}>Category: <span style={{color:"#222"}}>{category}</span></p>
                 <button onClick={addItem} style={{background: "#ff4c4c", color: "#fff", border: "none", borderRadius: "32px", padding: "14px 0", fontWeight:600, fontSize:"1.1rem", width: "100%", boxShadow: "0 2px 8px rgba(255,76,76,0.10)", marginBottom: "12px", transition: "background 0.2s"}}>
                   {cartProducts.find(item => item.id === id) ? 'Update Cart' : 'Add to Cart'}
