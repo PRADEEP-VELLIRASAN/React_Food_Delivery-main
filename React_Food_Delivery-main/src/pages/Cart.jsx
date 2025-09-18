@@ -44,7 +44,7 @@ const Cart = () => {
                 </>
               )}
               <div style={{marginTop: "24px", background: "#fff", borderRadius: "16px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", padding: "24px 18px"}}>
-                <h4 style={{fontWeight:700, color:"#222"}}>Subtotal: <span style={{color:"#ff4c4c"}}>${totalAmount}</span></h4>
+                <h4 style={{fontWeight:700, color:"#222"}}>Subtotal: <span style={{color:"#ff4c4c"}}>₹{totalAmount.toLocaleString('en-IN')}</span></h4>
                 <p style={{color: "#888", marginBottom: "18px"}}>Taxes and shipping will calculate at checkout</p>
                 <div style={{display: "flex", gap: "18px", flexWrap: "wrap"}}>
                   <Link to="/pizzas" style={{textDecoration: "none", flex:1}}>
@@ -76,7 +76,7 @@ const Tr = (props) => {
         <img src={image01} alt={title} style={{width: "56px", height: "56px", objectFit: "cover", borderRadius: "12px", boxShadow: "0 2px 8px rgba(0,0,0,0.08)"}} />
       </td>
       <td style={{textAlign: "center", padding: "12px", fontWeight:600}}>{title}</td>
-      <td style={{textAlign: "center", padding: "12px", color: "#ff4c4c", fontWeight:700}}>${price}</td>
+  <td style={{textAlign: "center", padding: "12px", color: "#ff4c4c", fontWeight:700}}>₹{price.toLocaleString('en-IN')}</td>
       <td style={{textAlign: "center", padding: "12px"}}>{quantity}px</td>
       <td style={{textAlign: "center", padding: "12px"}}>
         <button onClick={deleteItem} style={{background: "#ff4c4c", color: "#fff", border: "none", borderRadius: "8px", padding: "6px 12px", fontWeight:600, cursor: "pointer", boxShadow: "0 2px 8px rgba(255,76,76,0.10)", transition: "background 0.2s"}}>
