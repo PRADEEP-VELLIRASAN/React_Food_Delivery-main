@@ -76,7 +76,7 @@ const Home = () => {
                     <img src={product.image01} alt={product.title} style={{maxWidth: "100%", maxHeight: "100%", objectFit: "contain", borderRadius: "12px"}} />
                   </div>
                   <h4 className="product__title mb-2 text-center" style={{fontWeight:700, fontSize:"1.25rem", color:"#222"}}>{product.title}</h4>
-                  <p className="product__price mb-1 text-center" style={{fontWeight:600, color:"#ff4c4c", fontSize:"1.1rem"}}>Price: <span style={{fontWeight:700}}>${product.price}</span></p>
+                  <p className="product__price mb-1 text-center" style={{fontWeight:600, color:"#ff4c4c", fontSize:"1.1rem"}}>Price: <span style={{fontWeight:700}}>₹{product.price.toLocaleString('en-IN')}</span></p>
                   <p className="category mb-1 text-center" style={{color:"#888", fontSize:"0.98rem"}}>Category: <span style={{color:"#222"}}>{product.category}</span></p>
                   <p className="description__content mb-2 text-center" style={{fontSize:"0.97rem", color:"#555", minHeight:"48px"}}>{product.desc}</p>
                   <Link to={`/pizzas/${product.id}`} className="order__btn" style={{marginTop:"auto", width:"100%", textAlign:"center", background: "#ff4c4c", color: "#fff", borderRadius: "32px", padding: "10px 0", fontWeight:600, fontSize:"1rem", boxShadow: "0 2px 8px rgba(255,76,76,0.10)", border: "none", textDecoration: "none", transition: "background 0.2s"}}>View Details</Link>
