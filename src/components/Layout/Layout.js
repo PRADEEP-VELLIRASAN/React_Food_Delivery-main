@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
@@ -9,15 +10,17 @@ import { useSelector } from "react-redux";
 
 const Layout = () => {
   const showCart = useSelector((state) => state.cartUi.cartIsVisible);
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <div className="d-flex flex-column vh-100 justify-content-between">
-      <Header />
-      {showCart && <Carts />}
+      {!isLoginPage && <Header />}
+      {showCart && !isLoginPage && <Carts />}
       <div>
         <Routes />
       </div>
-      <Footer />
+      {!isLoginPage && <Footer />}
 
     </div>
   );
